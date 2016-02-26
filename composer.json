@@ -1,0 +1,34 @@
+{
+  "name": "stanislav-web/catalogue-export",
+  "description": "Exports of goods and services into the partner shops",
+  "type": "project",
+  "keywords": [
+    "phalcon export",
+    "product export",
+    "catalogue export",
+    "phalcon rest api"
+  ],
+  "homepage": "http://reds.com",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Stanislav WEB",
+      "email": "stanisov@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Application\\": "Application/"
+    }
+  },
+  "prefer-stable": true,
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=5.5.0",
+    "dannyvankooten/php-router": "dev-master",
+    "symfony/yaml": "^3.1@dev"
+  },
+  "require-dev": {
+  }
+}

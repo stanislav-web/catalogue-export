@@ -1,0 +1,5 @@
+base_path: /
+
+routes:
+  catalogue: [/catalogue/export, Application\Controllers\CatalogueController.exportAction, GET]
+  order:     [/order/export, Application\Controllers\OrderController.exportAction, GET]
