@@ -1,8 +1,5 @@
 <?php
 
-use PHPRouter\Config;
-use PHPRouter\Router;
-
 // Require definitions
 require_once '../config/definitions.php';
 
@@ -10,17 +7,23 @@ require_once '../config/definitions.php';
 require_once DOCUMENT_ROOT . '../vendor/autoload.php';
 
 // Require global configurations
-require_once DOCUMENT_ROOT . '../config/application.php';
+require_once DOCUMENT_ROOT . '../config/'.APPLICATION_ENV.'.php';
 
-// Require global services
-require_once DOCUMENT_ROOT . '../config/services.php';
+// init application
+$app = new Application\App($config);
 
 try {
-    $config = Config::loadFromFile(DOCUMENT_ROOT . '../config/routes.yaml');
 
-    $router = Router::parseConfig($config);
-    $router->matchCurrentRequest();
+    // start application
+    return $app->execute();
 
 } catch (\Exception $e) {
-    var_dump($e);
+
+    $message = ['error' => [
+        'code' => $e->getCode(),
+        'message' => $e->getMessage()
+    ]];
+
+    // log message
+    $app->getAppLogger()->json($message)->getLogger()->error($e->getMessage());
 }

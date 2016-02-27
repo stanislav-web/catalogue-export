@@ -1,5 +1,5 @@
 base_path: /
 
 routes:
-  catalogue: [/catalogue/export, Application\Controllers\CatalogueController.exportAction, GET]
-  order:     [/order/export, Application\Controllers\OrderController.exportAction, GET]
+  GoogleMerchantCatalogue: [/catalogue/pacifictea/export/googlemerchant/view/xml, Application\Modules\GoogleMerchant\Controllers\CatalogueController.exportAction, GET]
+  GoogleMerchantOrder:     [/catalogue/pacifictea/order/googlemerchant/view/xml, Application\Modules\GoogleMerchant\Controllers\OrderController.exportAction, GET]

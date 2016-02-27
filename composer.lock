@@ -4,9 +4,39 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "374c6215ab42e449609e4f7fbb0377f0",
-    "content-hash": "8aeb1b55f147fe10764636d7ba80f54d",
+    "hash": "b5016fd9f93a92b07e3aba9bbff8031f",
+    "content-hash": "844988227481d697fccbfbc0465de105",
     "packages": [
+        {
+            "name": "apache/log4php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://git-wip-us.apache.org/repos/asf/logging-log4php.git",
+                "reference": "ae4116e491d46170378c39c8c861a0153a957f5b"
+            },
+            "require": {
+                "php": ">=5.2.7"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/main/php/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "A versatile logging framework for PHP",
+            "homepage": "http://logging.apache.org/log4php/",
+            "keywords": [
+                "log",
+                "logging",
+                "php"
+            ],
+            "time": "2013-06-07 17:49:39"
+        },
         {
             "name": "dannyvankooten/php-router",
             "version": "dev-master",
@@ -64,12 +94,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "9d236ee4aa91b41833c6ba7690dec2d28fcc118f"
+                "reference": "a4d7a7a129c244c8fadb7a8dce4258623c0dbbf3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/9d236ee4aa91b41833c6ba7690dec2d28fcc118f",
-                "reference": "9d236ee4aa91b41833c6ba7690dec2d28fcc118f",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/a4d7a7a129c244c8fadb7a8dce4258623c0dbbf3",
+                "reference": "a4d7a7a129c244c8fadb7a8dce4258623c0dbbf3",
                 "shasum": ""
             },
             "require": {
@@ -105,7 +135,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-02-09 23:04:48"
+            "time": "2016-02-12 16:14:34"
         }
     ],
     "packages-dev": [],
@@ -113,7 +143,8 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "dannyvankooten/php-router": 20,
-        "symfony/yaml": 20
+        "symfony/yaml": 20,
+        "apache/log4php": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

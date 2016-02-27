@@ -48,3 +48,5 @@ crashlytics-build.properties
 logs
 vendor/
 tests/_output/*
+config/production.php
+config/development.php
