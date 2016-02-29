@@ -1,7 +1,8 @@
 <?php
 namespace Application\Service;
+
 use Application\Exceptions\NotFoundException;
-use Application\Service\Config;
+use Application\Aware\Cache;
 
 /**
  * Class View
@@ -38,17 +39,50 @@ class View {
      */
     protected $values = [];
 
+    use Cache;
+
     /**
      * Setup current template from request params
      *
-     * @param array  $config
-     * @param string $fileType
+     * @param array   $config
+     * @param string  $shop
+     * @param string  $fileType
      */
-    public function __construct(array $config, $fileType) {
+    public function __construct(array $config, $shop, $fileType) {
 
-        $this->fileType = $fileType;
-        $this->file = $config['templates'][$this->fileType];
-        $this->header = $config['headers'][$this->fileType];
+        // view cache setup
+        $this->isCacheEnabled   = $config['cache']['enable'];
+        $this->cacheTtl         = $config['cache']['ttl'];
+        $this->cacheDirectory   = $config['cache']['directory'].DIRECTORY_SEPARATOR.$shop;
+
+        $this->fileType         = $fileType;
+        $this->file             = $config['templates'][$this->fileType];
+        $this->header           = $config['headers'][$this->fileType];
+
+    }
+
+    /**
+     * Is template cached
+     *
+     * @return boolean
+     */
+    public function isCached() {
+
+        if($this->isCacheEnabled === true) {
+
+            $this->cacheFile = $this->cacheDirectory.DIRECTORY_SEPARATOR.basename($this->file);
+
+            if (file_exists($this->cacheFile) === false) {
+
+                // create cache directory
+                $this->createCacheDirectory();
+                return $this->isViewCached();
+            }
+            // check file time
+            return $this->isCacheActual();
+        }
+
+        return false;
     }
 
     /**
@@ -65,7 +99,7 @@ class View {
     }
 
     /**
-     * Get template variables (if non exist - silent)
+     * Get template variables (if non exist will create new)
      */
     public function __get($name) {
         if(isset($this->values[$name])) return $this->values[$name];
@@ -84,6 +118,13 @@ class View {
         }
 
         header($this->header);
+
+        if(file_exists($this->cacheFile)) {
+            $this->file = $this->cacheFile;
+        }
+        ob_start();
         include $this->file;
+        $data = ob_get_contents();
+        return $data;
     }
 }

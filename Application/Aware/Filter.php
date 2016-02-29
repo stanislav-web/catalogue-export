@@ -1,12 +1,12 @@
 <?php
-namespace Application\Helpers;
+namespace Application\Aware;
 
 /**
  * Class Filter
  *
- * @package Application\Helpers
+ * @package Application\Aware
  */
-class Filter {
+trait Filter {
 
     /**
      * Filtering request URI
@@ -14,7 +14,7 @@ class Filter {
      * @param $url
      * @return array ['path', 'query']
      */
-    public static function filterRequestUrl($url) {
+    public function filterRequestUrl($url) {
 
         // parse path
         $path = trim(parse_url($url, PHP_URL_PATH), '/');

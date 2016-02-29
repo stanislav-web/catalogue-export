@@ -18,6 +18,7 @@ class ProductService {
     protected $db;
 
     /**
+     * Init db connection
      * @param \Application\Service\Db $db
      */
     public function __construct(\Application\Service\Db $db) {

@@ -8,7 +8,7 @@ use Application\Modules\GoogleMerchant\Services\ProductService;
  *
  * @package Application\Modules\GoogleMerchant\Controllers
  */
-class CatalogueController extends ControllerBase {
+class OrderController extends ControllerBase {
 
     /**
      * @var \Application\Modules\GoogleMerchant\Services\ProductService $productService
@@ -31,13 +31,13 @@ class CatalogueController extends ControllerBase {
 
         if($this->view->isCached() === false) {
 
-            $this->view->set('test', 'test2222222');
+            $this->view->set('test', 'test2222');
 
             // save to cache
             $content = $this->view->output();
             return $this->view->cache($content);
         }
-
+        
         return $this->view->output();
     }
 }
