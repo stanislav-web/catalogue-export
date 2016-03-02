@@ -1,5 +1,5 @@
 <?php
-namespace Application\Aware;
+namespace Application\Aware\Implementors;
 
 use Application\Exceptions\InternalServerErrorException;
 use Application\Exceptions\NotFoundException;
@@ -7,7 +7,7 @@ use Application\Exceptions\NotFoundException;
 /**
  * Class Cache
  *
- * @package Application\Aware
+ * @package Application\Aware\Implementors
  */
 trait Cache {
 

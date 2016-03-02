@@ -25,5 +25,8 @@ try {
     ]];
 
     // log message
-    $app->getAppLogger()->json($message)->getLogger()->error($e->getMessage());
+    $errorLog = $app->getAppLogger();
+    $errorLog->json($message)->getLogger()->error($e->getMessage());
+    //(APPLICATION_ENV != 'production') ? $errorLog->json($message) : $errorLog->getLogger()->error($e->getMessage());
+
 }

@@ -1,5 +1,5 @@
 <?php
-namespace Application\Modules\GoogleMerchant\Controllers;
+namespace Application\Modules\Amazon\Controllers;
 
 use Application\Services\Db;
 use Application\Services\View;
@@ -41,6 +41,13 @@ class ControllerBase {
     protected $db;
 
     /**
+     * Partner config
+     *
+     * @var array $partnerConfig
+     */
+    protected $partnerConfig;
+
+    /**
      * Init & filtering request data
      */
     public function __construct() {
@@ -51,10 +58,12 @@ class ControllerBase {
         $this->config = $config;
         // set request handler
         $this->request = new Request();
+        // set partner config
+        $this->partnerConfig = $this->config['services'][$this->request->getExportPartner()];
 
         // set view templater
         $this->view = new View(
-            $this->config['services'][$this->request->getExportPartner()],
+            $this->partnerConfig,
             $this->request->getShop(),
             $this->request->getViewType()
         );

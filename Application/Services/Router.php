@@ -1,5 +1,5 @@
 <?php
-namespace Application\Service;
+namespace Application\Services;
 
 use Application\Exceptions\NotFoundException;
 use PHPRouter\Config;
@@ -8,7 +8,7 @@ use PHPRouter\Router as Route;
 /**
  * Class Router
  *
- * @package Application
+ * @package Application\Services
  */
 class Router {
 

@@ -1,12 +1,12 @@
 <?php
-namespace Application\Service;
+namespace Application\Services;
 
 use Application\Exceptions\InternalServerErrorException;
 
 /**
  * Class Db
  *
- * @package Application\Service
+ * @package Application\Services
  */
 class Db {
 

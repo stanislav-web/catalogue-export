@@ -1,13 +1,13 @@
 <?php
-namespace Application\Service;
+namespace Application\Services;
 
 use Application\Exceptions\NotFoundException;
-use Application\Aware\Cache;
+use Application\Aware\Implementors\Cache;
 
 /**
  * Class View
  *
- * @package Application\Service
+ * @package Application\Services
  */
 class View {
 

@@ -1,13 +1,13 @@
 <?php
-namespace Application\Service;
+namespace Application\Services;
 
-use Application\Aware\Filter;
+use Application\Aware\Implementors\Filter;
 use Application\Exceptions\BadRequestException;
 
 /**
  * Class Request
  *
- * @package Application\Service
+ * @package Application\Services
  */
 class Request {
 

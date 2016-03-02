@@ -2,11 +2,11 @@
 namespace Application\Modules\GoogleMerchant\Services;
 
 /**
- * Class ProductService
+ * Class OrderService
  *
  * @package Application\Modules\GoogleMerchant\Service
  */
-class ProductService {
+class OrderService {
 
     /**
      * Db service

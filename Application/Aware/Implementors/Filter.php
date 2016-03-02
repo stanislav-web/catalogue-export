@@ -1,10 +1,10 @@
 <?php
-namespace Application\Aware;
+namespace Application\Aware\Implementors;
 
 /**
  * Class Filter
  *
- * @package Application\Aware
+ * @package Application\Aware\Implementors
  */
 trait Filter {
 

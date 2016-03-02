@@ -1,10 +1,10 @@
 <?php
-namespace Application\Modules\GoogleMerchant\Services;
+namespace Application\Modules\Amazon\Services;
 
 /**
  * Class ProductService
  *
- * @package Application\Modules\GoogleMerchant\Service
+ * @package Application\Modules\Amazon\Service
  */
 class ProductService {
 

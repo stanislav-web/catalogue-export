@@ -1,12 +1,12 @@
 <?php
-namespace Application\Service;
+namespace Application\Services;
 
 use Logger as Log;
 
 /**
  * Class Logger
  *
- * @package Application
+ * @package Application\Services
  */
 class Logger {
 

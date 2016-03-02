@@ -11,14 +11,14 @@ final class App {
     /**
      * Application Logger
      *
-     * @var \Application\Service\Logger $logger
+     * @var \Application\Services\Logger $logger
      */
     private $logger = null;
 
     /**
      * Application router
      *
-     * @var \Application\Service\Router $router
+     * @var \Application\Services\Router $router
      */
     private $router = null;
 
@@ -32,11 +32,11 @@ final class App {
         $this->config = $config;
 
         if(is_null($this->logger) === true) {
-            $this->logger = new \Application\Service\Logger($config['logger']);
+            $this->logger = new \Application\Services\Logger($config['logger']);
         }
 
         if(is_null($this->router) === true) {
-            $this->router = new \Application\Service\Router($config['routes']);
+            $this->router = new \Application\Services\Router($config['routes']);
         }
     }
 
