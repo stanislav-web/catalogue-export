@@ -5,6 +5,7 @@ use Application\Exceptions\ClientProviderException;
 use MarketplaceWebServiceOrders_Client;
 use MarketplaceWebServiceOrders_Model_ListOrdersRequest as ListOrderRequest;
 use MarketplaceWebServiceOrders_Model_MarketplaceIdList as MarketplaceIdList;
+use MarketplaceWebServiceOrders_Model_OrderStatusList as OrderStatusList;
 
 /**
  * Class ClientProvider
@@ -55,15 +56,6 @@ class ClientProvider extends Client {
         // set client & merchant config
         $this->client = $client;
         $this->merchant = $merchant;
-
-        // set marketplace id
-        $marketplaceIdList = new MarketplaceIdList();
-        $marketplaceIdList->setId([$this->merchant['marketplaceId']]);
-        $this->request->setMarketplaceId($marketplaceIdList);
-
-        // set request options
-        $this->request = new ListOrderRequest();
-        $this->request->setSellerId($this->merchant['merchantId']);
     }
 
     /**
@@ -79,12 +71,28 @@ class ClientProvider extends Client {
      * List all orders updated after a certain date
      *
      * @param string $date
-     * @param string       $status
+     * @param string       $orderStatus
      * @return \MarketplaceWebServiceOrders_Model_ListOrdersResponse
      */
-    public function getOrders($date = 'NOW', $status) {
+    public function getOrders($date = 'NOW', $orderStatus) {
 
+        // ini list order request
+        $this->request = new ListOrderRequest();
+
+        // set marketplace id
+        $marketplaceIdList = new MarketplaceIdList();
+        $marketplaceIdList->setId([$this->merchant['marketplaceId']]);
+        $this->request->setMarketplaceId($marketplaceIdList);
+
+        // set request options
+        $this->request->setSellerId($this->merchant['merchantId']);
         $this->request->setCreatedAfter(new \DateTime($date, new \DateTimeZone('UTC')));
+
+        // Set the order statuses for this ListOrdersRequest (optional)
+        $orderStatuses = new OrderStatusList();
+        $orderStatuses->setStatus([$orderStatus]);
+        $this->request->setOrderStatus($orderStatuses);
+
         return $this->client->listOrders($this->request);
     }
 

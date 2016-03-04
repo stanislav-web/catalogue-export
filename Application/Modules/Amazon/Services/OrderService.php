@@ -14,6 +14,13 @@ use MarketplaceWebServiceOrders_Client as AmazonClient;
 class OrderService {
 
     /**
+     * Pending orders
+     *
+     * @const ORDER_STATUS_PENDING
+     */
+    const ORDER_STATUS_PENDING = 'Pending';
+
+    /**
      * Db service
      *
      * @var \Application\Services\Db $db
@@ -65,6 +72,8 @@ class OrderService {
                     $this->config['export']['config']
                 )), $this->config['export']['auth']
             ));
+
+            $this->clientProvider->getOrders('NOW', self::ORDER_STATUS_PENDING);
 
             //var_dump($this->clientProvider->getOrders()); exit;
         }
