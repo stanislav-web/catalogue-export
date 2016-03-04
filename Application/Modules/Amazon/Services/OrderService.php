@@ -1,9 +1,11 @@
 <?php
 namespace Application\Modules\Amazon\Services;
 
+use Application\Modules\Amazon\Providers\ClientProvider;
+use Application\Aware\Factories\ExportFactory;
 use Application\Exceptions\InternalServerErrorException;
-use Application\Aware\Factories\ResponderFactory;
-use Application\Exceptions\ResponderFactoryException;
+use Application\Exceptions\ExportFactoryException;
+use MarketplaceWebServiceOrders_Client as AmazonClient;
 
 /**
  * Class OrderService
@@ -27,11 +29,18 @@ class OrderService {
     private $config;
 
     /**
-     * Respond provider
+     * Export provider
      *
-     * @var \Application\Aware\Providers\Export $respondProvider
+     * @var \Application\Aware\Providers\Export $exportProvider
      */
-    private $respondProvider;
+    private $exportProvider;
+
+    /**
+     * Export provider
+     *
+     * @var \Application\Aware\Providers\Client $clientProvider
+     */
+    private $clientProvider;
 
     /**
      * Init service
@@ -48,13 +57,19 @@ class OrderService {
 
         try {
 
-            $this->respondProvider = (new ResponderFactory($this->config['export']))->load();
-            $loader = $this->respondProvider->loadSource();
+            // load client
+            $this->clientProvider = (new ClientProvider(
+                (new AmazonClient($this->config['export']['auth']['awsAccessKeyId'],
+                    $this->config['export']['auth']['awsSecretAccessKey'],
+                    $this->config['export']['auth']['applicationName'],
+                    $this->config['export']['auth']['applicationVersion'],
+                    $this->config['export']['config']
+                )), $this->config['export']['auth']
+            ));
 
-            return $loader->getData();
-            //return new
+            //var_dump($this->clientProvider->getOrders()); exit;
         }
-        catch(ResponderFactoryException $e) {
+        catch(ExportFactoryException $e) {
             throw new InternalServerErrorException($e->getMessage(), InternalServerErrorException::CODE);
         }
 

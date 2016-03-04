@@ -9,7 +9,7 @@ use Application\Exceptions\BadResponseException;
 
 
 /**
- * Class Providers
+ * Class Provider
  *
  * @package Application\Aware\Providers
  */

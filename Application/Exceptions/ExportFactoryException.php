@@ -2,16 +2,16 @@
 namespace Application\Exceptions;
 
 /**
- * Class ResponderFactoryException
+ * Class ExportFactoryException
  *
  * @package Application\Exceptions
  */
-class ResponderFactoryException extends \Exception {
+class ExportFactoryException extends \Exception {
 
     /**
      * @const HTTP response message
      */
-    const MESSAGE = 'Responder factory error';
+    const MESSAGE = 'Export factory error';
 
     /**
      * @const HTTP response code

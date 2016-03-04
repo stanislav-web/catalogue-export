@@ -1,15 +1,14 @@
 <?php
 namespace Application\Aware\Factories;
 use Application\Exceptions\InternalServerErrorException;
-use Application\Exceptions\ResponderFactoryException;
-use Doctrine\Instantiator\Exception\InvalidArgumentException;
+use Application\Exceptions\ExportFactoryException;
 
 /**
- * Class ResponderFactory
+ * Class ExportFactory
  *
  * @package Application\Aware\Factories
  */
-class ResponderFactory {
+class ExportFactory {
 
     /**
      * Responders namespace
@@ -37,7 +36,7 @@ class ResponderFactory {
      * Check instance
      *
      * @param array $params
-     * @throws ResponderFactoryException
+     * @throws ExportFactoryException
      */
     public function __construct(array $params = []) {
 
@@ -45,7 +44,7 @@ class ResponderFactory {
         $this->class = self::RESPONDERS_NAMESPACE.$this->params['type'];
 
         if(class_exists($this->class) === false) {
-            throw new ResponderFactoryException("Responder error: class ".$this->class." does not exist", InternalServerErrorException::CODE);
+            throw new ExportFactoryException("Responder error: class ".$this->class." does not exist", InternalServerErrorException::CODE);
         }
     }
 
@@ -63,7 +62,7 @@ class ResponderFactory {
         catch(InternalServerErrorException $e) {
             throw new \Exception($e->getMessage(), $e->getCode());
         }
-        catch(InvalidArgumentException $e) {
+        catch(\InvalidArgumentException $e) {
             throw new \Exception($e->getMessage(), $e->getCode());
         }
     }
