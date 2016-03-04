@@ -2,7 +2,6 @@
 namespace Application\Modules\Amazon\Services;
 
 use Application\Modules\Amazon\Providers\ClientProvider;
-use Application\Aware\Factories\ExportFactory;
 use Application\Exceptions\InternalServerErrorException;
 use Application\Exceptions\ExportFactoryException;
 use MarketplaceWebServiceOrders_Client as AmazonClient;
