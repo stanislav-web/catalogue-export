@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "967492041542e7623e1910729bda695a",
-    "content-hash": "a94af36a4fbd7817d872766c22385151",
+    "hash": "763cf3cccfc0ad794c19c009e6e1da13",
+    "content-hash": "5465ee74f12ab7ac92440ed47c043f11",
     "packages": [
         {
             "name": "apache/log4php",
@@ -239,6 +239,50 @@
             "time": "2015-03-18 18:23:50"
         },
         {
+            "name": "plugmystore/amazon-mws-orders",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/plugmystore/amazon-mws-orders.git",
+                "reference": "09c4462e916fda619c991aa6fcb51995bec666d3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/plugmystore/amazon-mws-orders/zipball/09c4462e916fda619c991aa6fcb51995bec666d3",
+                "reference": "09c4462e916fda619c991aa6fcb51995bec666d3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Yann Milin",
+                    "email": "yann@plugmystore.com",
+                    "homepage": "http://plugmystore.com"
+                }
+            ],
+            "description": "Amazon MWS Orders API with Composer integration",
+            "homepage": "https://github.com/plugmystore/amazon-mws-orders",
+            "keywords": [
+                "amazon",
+                "api",
+                "mws",
+                "orders"
+            ],
+            "time": "2014-10-15 08:32:29"
+        },
+        {
             "name": "symfony/event-dispatcher",
             "version": "v2.8.2",
             "source": {
@@ -308,7 +352,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/6abf61b4e0f8330ccf891c046273966272ff3f49",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/13797a2598154e4663f31360733434e56924e20a",
                 "reference": "91dbeb63c08bf4daf74b007d1a0cdc940d6c7efb",
                 "shasum": ""
             },
@@ -346,52 +390,6 @@
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
             "time": "2016-02-16 08:48:00"
-        },
-        {
-            "name": "tilleuls/amazon-mws-orders",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/coopTilleuls/amazon-mws-orders.git",
-                "reference": "5c18f7ced3e45997d78afc1db01388080034bee6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/coopTilleuls/amazon-mws-orders/zipball/5c18f7ced3e45997d78afc1db01388080034bee6",
-                "reference": "5c18f7ced3e45997d78afc1db01388080034bee6",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "php": ">=5.2.8"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "include-path": [
-                "src/"
-            ],
-            "authors": [
-                {
-                    "name": "Baptiste Meyer",
-                    "email": "baptiste@les-tilleuls.coop"
-                }
-            ],
-            "description": "Amazon Marketplace Web Service Orders PHP Client Library",
-            "homepage": "http://les-tilleuls.coop",
-            "keywords": [
-                "amazon",
-                "api",
-                "client",
-                "library",
-                "mws",
-                "orders"
-            ],
-            "time": "2015-03-18 14:24:26"
         }
     ],
     "packages-dev": [
@@ -1308,7 +1306,7 @@
         "apache/log4php": 20,
         "guzzle/guzzle": 20,
         "faisalman/simple-excel-php": 20,
-        "tilleuls/amazon-mws-orders": 20
+        "plugmystore/amazon-mws-orders": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

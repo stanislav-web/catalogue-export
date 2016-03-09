@@ -11,9 +11,8 @@ use MarketplaceWebServiceOrders_Model_OrderStatusList as OrderStatusList;
  * Class ClientOrderProvider
  *
  * @package Application\Modules\Amazon\Providers
- * @link https://github.com/coopTilleuls/amazon-mws-orders
+ * @link https://github.com/plugmystore/amazon-mws-orders
  * @link https://images-na.ssl-images-amazon.com/images/G/01/mwsportal/doc/en_US/orders/2013-09-01/MWSOrdersApiReference._V361505966_.pdf
- * @link https://elasticmapreduce.eu-west-1.amazonaws.com/?Action=GetOrder&SellerId=1&CreatedAfter=2016-02-23T14%3A06%3A41%2B0000&OrderStatus.Status.1=Pending&MarketplaceId.Id.1=1&AWSAccessKeyId=12124654645746765756&Timestamp=2016-02-23T14%3A06%3A41.000Z&Version=2013-09-01&SignatureVersion=2&SignatureMethod=HmacSHA256&Signature=g4xOYeHF5f9oIH8RPv5DIyw0QklnZmVDv10cKG3KdP8%3D
  **/
 class ClientOrderProvider extends Client {
 
@@ -83,9 +82,11 @@ class ClientOrderProvider extends Client {
      * @param string $date
      * @param string       $orderStatus
      * @link http://docs.developer.amazonservices.com/en_US/orders/2013-09-01/Orders_ListOrders.html
+     * @link https://mws.amazonservices.ca/Orders/%s?Action=listOrders&SellerId=1&CreatedAfter=2016-02-23T14%3A06%3A41%2B0000&OrderStatus.Status.1=Pending&MarketplaceId.Id.1=1&AWSAccessKeyId=12124654645746765756&Timestamp=2016-02-23T14%3A06%3A41.000Z&Version=2013-09-01&SignatureVersion=2&SignatureMethod=HmacSHA256&Signature=g4xOYeHF5f9oIH8RPv5DIyw0QklnZmVDv10cKG3KdP8%3D
      * @return \MarketplaceWebServiceOrders_Model_ListOrdersResponse
      */
-    public function getOrders($date = 'NOW', $orderStatus) {
+    public function getOrders($date = 'NOW', array $orderStatuses) {
+
 
         try {
 
@@ -93,17 +94,15 @@ class ClientOrderProvider extends Client {
             $this->request = new ListOrderRequest();
 
             // set marketplace id
-            $marketplaceIdList = new MarketplaceIdList();
-            $marketplaceIdList->setId([$this->merchantConfig['marketplaceId']]);
-            $this->request->setMarketplaceId($marketplaceIdList);
+            $this->request->setMarketplaceId($this->merchantConfig['marketplaceId']);
 
-            // set request options
+            // set seller id
             $this->request->setSellerId($this->merchantConfig['merchantId']);
+
+            // set create order's date
             $this->request->setCreatedAfter(new \DateTime($date, new \DateTimeZone('UTC')));
 
             // set the order statuses
-            $orderStatuses = new OrderStatusList();
-            $orderStatuses->setStatus([$orderStatus]);
             $this->request->setOrderStatus($orderStatuses);
 
             return $this->orderClient->listOrders($this->request);

@@ -24,11 +24,11 @@ abstract class Client {
     /**
      * List all orders updated after a certain date
      *
-     * @param string $date
-     * @param string       $status
+     * @param string $orderDate
+     * @param array $orderStatuses
      * @return void
      */
-    abstract function getOrders($date = 'NOW', $status);
+    abstract function getOrders($orderDate = 'NOW', array $orderStatuses);
 
     /**
      * Get order items

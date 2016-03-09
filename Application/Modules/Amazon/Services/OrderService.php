@@ -160,7 +160,7 @@ class OrderService {
                 )), $this->config['export']['auth']
             ));
 
-            return $this->clientOrderProvider->getOrders($date, self::ORDER_STATUS_PENDING);
+            return $this->clientOrderProvider->getOrders($date, [self::ORDER_STATUS_PENDING]);
 
         }
         catch(BadRequestException $e) {
