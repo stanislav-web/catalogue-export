@@ -34,4 +34,30 @@ trait Filter {
             },$query)
         ];
     }
+
+    /**
+     * Get date ISO8601 format
+     *
+     * @param string | int $date
+     * @return string
+     * @throws \Exception
+     */
+    public function dateFilterISO($date) {
+
+        if($date != null) {
+
+            try {
+                if(is_numeric($date) === true) {
+                    $date = (new \DateTime())->setTimestamp($date)->format(DATE_ISO8601);
+                }
+                else {
+                    $date = (new \DateTime($date))->format(DATE_ISO8601);
+                }
+                return $date;
+
+            } catch (\RuntimeException $e) {
+                throw new \Exception($e->getMessage(), $e->getCode());
+            }
+        }
+    }
 }

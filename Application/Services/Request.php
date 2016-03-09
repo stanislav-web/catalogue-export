@@ -77,4 +77,35 @@ class Request {
         }
         return $this->params['path']['view'];
     }
+
+    /**
+     * Get query string
+     *
+     * @return Request
+     */
+    public function getQuery() {
+
+        $this->params['query'] = (isset($this->params['query'])) ? (object)$this->params['query'] : null;
+
+        return $this;
+    }
+
+    /**
+     * Get date ISO8601 format
+     *
+     * @return null|string
+     * @throws \Exception
+     */
+    public function getDate() {
+
+        $date = (isset($this->params['query']->date) === true) ? $this->params['query']->date : null;
+
+        try {
+            return $this->dateFilterISO($date);
+        }
+        catch(\Exception $e) {
+            throw new \Exception($e->getMessage(), $e->getCode());
+        }
+
+    }
 }

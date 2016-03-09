@@ -1,6 +1,7 @@
 <?php
 namespace Application\Modules\Amazon\Controllers;
 
+use Application\Exceptions\InternalServerErrorException;
 use Application\Modules\Amazon\Services\OrderService;
 
 /**
@@ -31,8 +32,15 @@ class OrderController extends ControllerBase {
      */
     public function exportAction() {
 
-        // load orders
-        $orders = $this->orderService->loadOrders();
+        try {
+
+            // load orders ( optional : date )
+            $orders = $this->orderService->loadOrders($this->getQueryString()->getDate());
+        }
+        catch(\Exception $e) {
+
+            throw new InternalServerErrorException($e->getMessage(), InternalServerErrorException::CODE);
+        }
 
         //@todo collect to view
         if($this->view->isCached() === false) {

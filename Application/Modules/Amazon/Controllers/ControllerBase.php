@@ -56,8 +56,10 @@ class ControllerBase {
 
         // set configuration
         $this->config = $config;
+
         // set request handler
         $this->request = new Request();
+
         // set partner config
         $this->partnerConfig = $this->config['services'][$this->request->getExportPartner()];
 
@@ -69,5 +71,14 @@ class ControllerBase {
         );
         // setup database connect
         $this->db = new Db($this->config['database']);
+    }
+
+    /**
+     * Get query string
+     *
+     * @return Request
+     */
+    protected function getQueryString() {
+        return $this->request->getQuery();
     }
 }
